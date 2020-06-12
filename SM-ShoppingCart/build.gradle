@@ -3,6 +3,9 @@ apply from: "../config/module.gradle"
 dependencies {
     implementation "androidx.appcompat:appcompat:${gradle.androidxAppcompat}"
 
+    implementation "com.base.library:font:${gradle.appLibraryFont}"
+    implementation "com.base.library:values:${gradle.appLibraryValues}"
+
     testImplementation "junit:junit:${gradle.androidxJunit}"
     androidTestImplementation "androidx.test.ext:junit:${gradle.androidxTestJunit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${gradle.androidxTestEspresso}"

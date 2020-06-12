@@ -1,4 +1,4 @@
-apply plugin:'maven-publish'
+apply plugin: 'maven-publish'
 
 task sourcesJar(type: Jar) {
     archiveClassifier = 'sources'
@@ -11,8 +11,8 @@ task sourcesJar(type: Jar) {
 def addPomDependencies(it, dependenciesNode) {
     def dependencyNode = dependenciesNode.appendNode('dependency')
 
-    dependencyNode.appendNode('groupId', it.group == getRootProject().name ? "${gradle.maveGroupId}" : it.group)
-    dependencyNode.appendNode('artifactId', it.group == getRootProject().name ? it.name.toLowerCase() : it.name)
+    dependencyNode.appendNode('groupId', it.group)
+    dependencyNode.appendNode('artifactId', it.name)
     dependencyNode.appendNode('version', it.version)
     dependencyNode.appendNode('scope', 'implementation')
 }
@@ -35,7 +35,12 @@ publishing {
             pom.withXml {
                 def dependenciesNode = asNode().appendNode('dependencies')
                 configurations.implementation.allDependencies.each {
-                    if (it.group != null && it.name != null && "unspecified" != it.name && it.version != null) {
+                    if (it.group != null &&
+                            !it.group.contains("androidx") &&
+                            it.name != null &&
+                            "unspecified" != it.name &&
+                            getRootProject().name != it.name &&
+                            it.version != null) {
                         addPomDependencies(it, dependenciesNode)
                     }
                 }
