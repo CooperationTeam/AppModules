@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion gradle.compileSdkVersion
+    buildToolsVersion gradle.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion gradle.minSdkVersion
+        targetSdkVersion gradle.targetSdkVersion
+        versionCode gradle.versionCode
+        versionName gradle.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+}
