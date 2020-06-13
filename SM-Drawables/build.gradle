@@ -1,0 +1,6 @@
+apply from: "../config/module.gradle"
+
+def isPublishingRelease = gradle.mavePublishingRelease
+def mavenVersion = '1.0.0'
+project.version = "${mavenVersion}-${isPublishingRelease ? 'release' : 'SNAPSHOT'}"
+apply from: "../config/maven_publishing.gradle"

@@ -31,3 +31,6 @@ gradle.ext.appLibraryValues = "1.0.0-release"
 rootProject.name='AppModules'
 include ':app'
 include ':SM-ShoppingCart'
+include ':SM-Orders'
+include ':SM-Drawables'
+include ':SM-Home'
