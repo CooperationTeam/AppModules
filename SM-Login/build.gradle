@@ -1,0 +1,19 @@
+apply from: "../config/module.gradle"
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:${gradle.androidxAppcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${gradle.androidxConstraintlayout}"
+    implementation "com.base.library:font:${gradle.appLibraryFont}"
+    implementation "com.base.library:values:${gradle.appLibraryValues}"
+
+    testImplementation "junit:junit:${gradle.androidxJunit}"
+    androidTestImplementation "androidx.test.ext:junit:${gradle.androidxTestJunit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${gradle.androidxTestEspresso}"
+
+    implementation project(path: ':SM-Drawables')
+}
+
+def isPublishingRelease = gradle.mavePublishingRelease
+def mavenVersion = '1.0.0'
+project.version = "${mavenVersion}-${isPublishingRelease ? 'release' : 'SNAPSHOT'}"
+apply from: "../config/maven_publishing.gradle"
